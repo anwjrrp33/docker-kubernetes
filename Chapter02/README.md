@@ -61,7 +61,7 @@ docker network create --driver bridge [브리지 네트워크 명]
 - host와는 통신 불가능
 ↑ 공부하지만 MacVLAN에 대한 이해가 좀 부족함 구글링으로 추후 공부 
 
-## 책 P65에서 로깅 드라이버를 syslog로 변경해서 컨테이너를 생성하는데 본인은 docker for windows에서 wsl2에서 ubuntu를 설치 후 진행중이였는데 
+## 책 P65에서 로깅 드라이버를 syslog로 변경해서 컨테이너를 생성하는데 본인은 docker for windows에서 wsl2에서 ubuntu를 설치 후 진행중이였는데 에러발생
 ![image](https://user-images.githubusercontent.com/38122225/129735168-4dbf67d2-244b-48c3-927d-8d98e3cb23b0.png)
 ## sudo service rsyslog restart 입력 후하면 정상적으로 로깅 드라이버를 syslog 변경 가능하다.
 
