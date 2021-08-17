@@ -18,6 +18,7 @@
 
 #### 도커 네트워크 구조
 ![image](https://user-images.githubusercontent.com/38122225/129666867-a40a9289-11e5-4850-b65f-3a2ce1b3561d.png)
+<br>
 [참조](https://jonnung.dev/docker/2020/02/16/docker_network/)
 
 ### 2.4 Dockerfile
