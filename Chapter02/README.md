@@ -21,6 +21,8 @@
 <br>
 [참조](https://jonnung.dev/docker/2020/02/16/docker_network/)
 
+### docker for windows나 docker for mac의 경우 docker0의 브리지를 사용하지 않음 공식문서를 https://docs.docker.com/desktop/windows/networking/ 참조하며 책을 진행함
+
 ### 2.4 Dockerfile
 - 개발한 애플리케이션을 컨테이너화할땐 컨테이너 생성 환경 설치 후 동작을 확인, 컨테이너를 이미지로 커밋하는 방식 하지만 매번 수작업으로 진행해야하기 때문에 보통 도커에서는 build 명령어를 제공
 - build하는 작업을 기록한 것을 Dockerfile이라고 부르며, build 명령어는 Dockerfile을 읽어서 이미지를 생성
