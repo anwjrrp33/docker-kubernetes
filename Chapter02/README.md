@@ -61,6 +61,21 @@ docker network create --driver bridge [브리지 네트워크 명]
 - host와는 통신 불가능
 ↑ 공부하지만 MacVLAN에 대한 이해가 좀 부족함 구글링으로 추후 공부 
 
+
+#### 컨테이너 로깅
+~~~
+docker logs [컨테이너 이름 또는 아이디]
+~~~
+- 기본적으로 Json file 형태로 저장되며, --log-opt 옵션으로 파일 최대 크기 및 파일 개수를 지정 가능
+
+#### syslog 로그
+- 유닉스에서 로그를 수집하는 표준 중 하나로, --log-driver=syslog 옵션으로 설정 가능
+|운영체제|경로|
+|:---:|:---:|
+|Ubuntu 14.04|/var/log/syslog|
+|CentOS, RHEL|/var/log/messages|
+|Ubuntu 16.04, CoreOS|journalctl -u docker.service|
+
 ## 책 P65에서 로깅 드라이버를 syslog로 변경해서 컨테이너를 생성하는데 본인은 docker for windows에서 wsl2에서 ubuntu를 설치 후 진행중이였는데 에러발생
 ![image](https://user-images.githubusercontent.com/38122225/129735168-4dbf67d2-244b-48c3-927d-8d98e3cb23b0.png)
 ## sudo service rsyslog restart 입력 후하면 정상적으로 로깅 드라이버를 syslog 변경 가능하다.
