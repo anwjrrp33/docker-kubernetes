@@ -16,8 +16,9 @@
 ~~~
 - -v 명령어 대신 -mount 명령어로도 사용 가능
 
-도커 네트워크
+#### 도커 네트워크 구조
 ![image](https://user-images.githubusercontent.com/38122225/129666867-a40a9289-11e5-4850-b65f-3a2ce1b3561d.png)
+[참조](https://jonnung.dev/docker/2020/02/16/docker_network/)
 
 ### 2.4 Dockerfile
 - 개발한 애플리케이션을 컨테이너화할땐 컨테이너 생성 환경 설치 후 동작을 확인, 컨테이너를 이미지로 커밋하는 방식 하지만 매번 수작업으로 진행해야하기 때문에 보통 도커에서는 build 명령어를 제공
@@ -37,7 +38,7 @@
 |COPY, ADD|호스트OS에서 파일또는 디렉토리를 컨테이너 안 경로로 복사, ADD의 경우 원격 파일 다운로드 또는 축해제 등과 같은 기능이 존재|
 |USER|명령을 실행할 사용자 계정을 설정, RUN, CMD, ENTRYPOINT에 적용|
 
-도커 Port forwaring, Port mapping
+#### 도커 Port forwaring, Port mapping
 - 외부 주소와 내부 주소를 이어주는 역할
 - -p [호스트 포트]:[컨테이너 포트]/[프로토콜 유형] 프로토콜 유형은 생략가능 생략시 TCP로 기본 적용
 - docker run -p 옵션으로 호스트 포트와 컨테이너 포트를 명시적으로 지정이 가능하지만, Dockerfile의 EXPOSE 명령어는 컨테이너 포트만 지정할 뿐이며, 호스트 포트는 -p 옵션으로 호스트 포트를 명시적으로 지정해주던지 생략시 랜덤 호스트포트가 EXPOSE에 설정한 컨테이너 포트로 매핑
