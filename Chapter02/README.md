@@ -80,6 +80,43 @@ docker logs [컨테이너 이름 또는 아이디]
 ![image](https://user-images.githubusercontent.com/38122225/129735168-4dbf67d2-244b-48c3-927d-8d98e3cb23b0.png)
 ## sudo service rsyslog restart 입력 후하면 정상적으로 로깅 드라이버를 syslog 변경 가능하다.
 
+
+컨테이너 자원 할당 제한
+- 컨테이너를 생성하는 과정에서 옵션을 줘서 자원 할당량을 조정할 수 있다.
+- docker inspect 명령어를 통해서 자원 제한을 확인할 수 있다.
+- ps aux | grep [프로세스 명]을 통해서 자원 할당량을 볼수 있다.
+- htop를 통해서 CPU 정보를 UI로 볼수 있다.
+
+컨테이너 메모리 제한
+~~~
+--memory="[값]"
+~~~
+- 버전마다 최소 메모리가 조금씩 다르다.
+
+컨테이너 CPU 제한
+~~~
+--cpu-shares [값]
+~~~
+- 컨테이너의 가중치를 설정해서 해당 컨테이너의 CPU를 상대적으로 얼마나 사용할지 나타낸다. 기본 값은 1024로 CPU 할당에서 1을 의미한다.
+~~~
+--cpuset-cpu=[값]
+~~~
+- 호스트에 CPU가 여러 개 있을 경우 --cpuset-cpu 옵션을 통해서 특정 CPU만 사용하도록 설정이 가능하다.
+- 우분투 기준으로 apt-get install htop 명여러를 통해서 설치 후 htop를 통해서 CPU별 사용량을 확인할 수 있다.
+~~~
+--cpu-period=[값]
+--cpu-quota=[값]
+~~~
+- CPU 스케줄링 주기를 변경할 수 있다.
+- --cpu-period는 기본 100000(100ms)이며, --cpu-quota의 값/ --cpu-period의 값만큼 할당한다.
+- period가 100000이고 quota가 25000인 경우 주기를 1/4로 줄여서 성능도 1/4로 감소한다.
+~~~
+--cpus=[값]
+~~~
+- --cpu-period와 --cpu-quota와 동일하지만 직관적으로 CPU 갯수를 지정한다.
+- 값에 0.5 입력시 50%를 사용한다.
+
+
 ### 2.4 Dockerfile
 - 개발한 애플리케이션을 컨테이너화할땐 컨테이너 생성 환경 설치 후 동작을 확인, 컨테이너를 이미지로 커밋하는 방식 하지만 매번 수작업으로 진행해야하기 때문에 보통 도커에서는 build 명령어를 제공
 - build하는 작업을 기록한 것을 Dockerfile이라고 부르며, build 명령어는 Dockerfile을 읽어서 이미지를 생성
