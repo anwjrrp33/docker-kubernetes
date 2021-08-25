@@ -81,19 +81,19 @@ docker logs [컨테이너 이름 또는 아이디]
 ## sudo service rsyslog restart 입력 후하면 정상적으로 로깅 드라이버를 syslog 변경 가능하다.
 
 
-컨테이너 자원 할당 제한
+#### 컨테이너 자원 할당 제한
 - 컨테이너를 생성하는 과정에서 옵션을 줘서 자원 할당량을 조정할 수 있다.
 - docker inspect 명령어를 통해서 자원 제한을 확인할 수 있다.
 - ps aux | grep [프로세스 명]을 통해서 자원 할당량을 볼수 있다.
 - htop를 통해서 CPU 정보를 UI로 볼수 있다.
 
-컨테이너 메모리 제한
+#### 컨테이너 메모리 제한
 ~~~
 --memory="[값]"
 ~~~
 - 버전마다 최소 메모리가 조금씩 다르다.
 
-컨테이너 CPU 제한
+#### 컨테이너 CPU 제한
 ~~~
 --cpu-shares [값]
 ~~~
@@ -115,6 +115,43 @@ docker logs [컨테이너 이름 또는 아이디]
 ~~~
 - --cpu-period와 --cpu-quota와 동일하지만 직관적으로 CPU 갯수를 지정한다.
 - 값에 0.5 입력시 50%를 사용한다.
+
+##### Block I/O 제한
+- 컨테이너를 생성할 때 옵션 지정이 없으면 파일을 읽고 쓰는 대역폭이 제한되어 있지않은데 --device-write-bps, --device-read-bps, --device-write-iops, --device-read-iops 옵션을 지정해서 입출력 제한이 가능하다. 추가적으로 해당 블로그를 [참조](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=alice_k106&logNo=220899310289) 했다.
+좀 이해가 제대로 안되서 나중에 추가로 학습이 필요할거 같다.
+
+### 도커 이미지
+- 서비스 운영에 필요한 서버 프로그램, 소스코드 및 라이브러리, 컴파일된 실행 파일을 묶는 형태
+
+#### 도커 이미지 생성
+~~~
+docker commit [options] [container] [repository:tag]
+~~~
+- 태그 생략시 자동으로 lastest로 설정되며, 기본적으로 도커 이미지를 생성하는 방법에는 여러가지가 존재하는데 위 방법은 기존에 존재하는 container를 이미지로 만든 방법이다. 이 방식은 추천하지 않으며 주로 Dockerfile을 통해서 이미지를 만드는 방식을 주로 사용한다.
+
+#### 도커 이미지 구조
+- 이미지는 쉽게 만들 수 있지만, 효과적으로 다루기 위해선 이미지의 구조 이해가 필요하다.
+~~~
+docker inspect [이미지 이름:Tag]
+~~~
+명령어 입력시 나오는 Layers 항목은 16진수 해시값으로 이루어져있으며, 이미지를 커밋할 때 변경 사항들이 레이어에 저장한다.
+~~~
+-- 이미지가 어떤 레이어로 생성됬는지 출력
+docker history [이미지 이름:tag]
+~~~
+~~~
+- 컨테이너가 사용 중인 이미지를 docker rm -f 옵션으로 강제 삭제 시 이미지의 이름이 none 으로 변경되는데, none으로 변한 이미지를 dangling이미지라고 한다.
+docker images -f danling=true
+~~~
+도커 이미지 삭제 시 레이어에 참조되는 경우 Untagged~ 라는 결과값이 표시되는데 실제로 이미지를 삭제하는게 아닌 부여된 이름만 삭제한다는 의미다.
+
+### 도커 이미지 추출
+~~~
+- docker save 명령어로 이미지의 모든 메타데이터를 포함해 파일로 추출 가능하며, docker load 명령어로 이미지를 로드 시에 이전 이미지와 완전히 동일한 이미지가 생성된다.
+docker save -o [추출될 파일명] [이미지 명:TAG]
+docker load -i [추출한 파일명]
+~~~
+위 와 비슷한 명령어로 export, import 명령어가 존재한다.
 
 
 ### 2.4 Dockerfile
