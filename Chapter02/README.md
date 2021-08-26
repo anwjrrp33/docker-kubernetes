@@ -70,6 +70,7 @@ docker logs [컨테이너 이름 또는 아이디]
 
 #### syslog 로그
 - 유닉스에서 로그를 수집하는 표준 중 하나로, --log-driver=syslog 옵션으로 설정 가능
+
 |운영체제|경로|
 |:---:|:---:|
 |Ubuntu 14.04|/var/log/syslog|
