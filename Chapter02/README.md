@@ -196,6 +196,13 @@ docker push [푸시할 이미지]
 |COPY, ADD|호스트OS에서 파일또는 디렉토리를 컨테이너 안 경로로 복사, ADD의 경우 원격 파일 다운로드 또는 축해제 등과 같은 기능이 존재|
 |USER|명령을 실행할 사용자 계정을 설정, RUN, CMD, ENTRYPOINT에 적용|
 
+~~~
+- Dockerfile 빌드
+docker build -t [이미지이름:태그] [경로]
+- 컨테이너와 연결된 호스트 포트 확인
+docker port [컨테이너 이름]
+~~~
+
 #### 도커 Port forwaring, Port mapping
 - 외부 주소와 내부 주소를 이어주는 역할
 - -p [호스트 포트]:[컨테이너 포트]/[프로토콜 유형] 프로토콜 유형은 생략가능 생략시 TCP로 기본 적용
