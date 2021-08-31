@@ -211,6 +211,10 @@ docker port [컨테이너 이름]
 #### 멀티 스테이지를 이용한 Dockerfile 빌드
 - 애플리케이션을 빌드할 경우 많은 의존성 패키지와 라이브러리가 존재하는데 간단하게 Hello World를 콘솔에 출력하는 경우에도 이미지의 크기가 매우 거대해진다. 17.05 버전 이상의 도커 엔진의 경우 이미지를 크기를 줄이는 멀티 스테이지 빌드 방법을 사용해 하나의 Dockerfile 안에 여러 개의 FROM 이미지를 정의해서 빌드 완료 시 생성될 이미지의 크기를 줄이는 방식이다.
 
+책에대한 설명으로 이해가 다 되지않아서 아래 블로그를 좀 참조함.
+[Docker Multi Stage란?](https://nesoy.github.io/articles/2020-11/Docker-multi-stage-build)
+[[Golang] Docker 멀티 스테이지 빌드로 한 큐에 이미지 만들기](https://lynlab.co.kr/blog/89)
+  
 |명령어|설명|
 |---|---|
 |||
